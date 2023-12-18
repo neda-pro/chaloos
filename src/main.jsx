@@ -4,13 +4,14 @@ import { Provider } from "react-redux";
 import { store } from "./store.js";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Root from "./routes/root.jsx";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello word</div>,
+    element: <Root />,
   },
 ]);
 
