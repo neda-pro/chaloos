@@ -1,28 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
 import { request } from "../utils/axios-utils";
 
-const getAllProducts = () => {
-  return request({ url: "/products", method: "GET" });
-};
-const getAllCategories = () => {
+const getAllCategoriesHelper = () => {
   return request({ url: "/products/categories", method: "GET" });
 };
-const getProduct = (id) => {
+const getProductHelper = (id) => {
   return request({ url: `/products/${id}`, method: "GET" });
 };
 
-export const useProducts = () => {
-  return useQuery({
-    queryKey: ["products"],
-    queryFn: getAllProducts,
-    select: (data) => data.data,
-  });
+const getProductsHelper = (query) => {
+  const serialize = (obj) => {
+    var str = [];
+    for (var p in obj)
+      if (obj.hasOwnProperty(p)) {
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      }
+    return str.join("&");
+  };
+  return request({ url: `/products?${serialize(query)}` });
 };
 
 export const useCategories = () => {
   return useQuery({
     queryKey: ["categories"],
-    queryFn: getAllCategories,
+    queryFn: getAllCategoriesHelper,
     select: (data) => data.data,
   });
 };
@@ -30,7 +31,15 @@ export const useCategories = () => {
 export const useProduct = (id) => {
   return useQuery({
     queryKey: ["product"],
-    queryFn: () => getProduct(id),
+    queryFn: () => getProductHelper(id),
+    select: (data) => data.data,
+  });
+};
+
+export const useProducts = (query) => {
+  return useQuery({
+    queryKey: ["products-with-query"],
+    queryFn: () => getProductsHelper(query),
     select: (data) => data.data,
   });
 };
