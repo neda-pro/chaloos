@@ -1,12 +1,15 @@
-import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
+import AppHeader from "../components/AppHeader";
+import AppFooter from "../components/AppFooter";
+import { Container } from "@mui/material";
 
 const Root = () => {
   return (
-    <>
-      <Box>Test</Box>
+    <Container maxWidth="xl">
+      <AppHeader />
       <Outlet />
-    </>
+      <AppFooter />
+    </Container>
   );
 };
 
