@@ -1,7 +1,7 @@
-import { Box } from "@mui/material";
+import { Typography } from "@mui/material";
 
 const Home = () => {
-  return <Box>Home page</Box>;
+  return <Typography>Home page</Typography>;
 };
 
 export default Home;

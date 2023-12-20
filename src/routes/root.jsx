@@ -1,15 +1,17 @@
 import { Outlet } from "react-router-dom";
 import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 const Root = () => {
   return (
-    <Container maxWidth="xl">
+    <Box sx={{ padding: "0 5rem" }}>
       <AppHeader />
-      <Outlet />
+      <Container maxWidth="xl">
+        <Outlet />
+      </Container>
       <AppFooter />
-    </Container>
+    </Box>
   );
 };
 
