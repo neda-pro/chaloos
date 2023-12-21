@@ -53,7 +53,7 @@ function ResponsiveAppBar() {
       }}
     >
       <Container maxWidth={false}>
-        <Toolbar disableGutters sx={{ color: "#686868" }}>
+        <Toolbar disableGutters sx={{ color: grey[900] }}>
           <FlutterDashIcon
             sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
           />
@@ -105,8 +105,12 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ color: grey[600] }}
+                >
+                  <Typography textAlign="center">{page} </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -137,7 +141,7 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ color: "#686868", display: "block" }}
+                sx={{ color: grey[600], display: "block" }}
               >
                 {page}
               </Button>
