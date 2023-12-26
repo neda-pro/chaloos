@@ -7,10 +7,10 @@ const Root = () => {
   return (
     <Box sx={{ padding: "0 5rem" }}>
       <AppHeader />
-      <Container maxWidth="xl">
-        <Outlet />
-      </Container>
-      <AppFooter />
+      {/* <Container maxWidth={false}> */}
+      <Outlet />
+      {/* </Container> */}
+      {/* <AppFooter /> */}
     </Box>
   );
 };
