@@ -1,0 +1,91 @@
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from "@mui/material";
+import { grey } from "@mui/material/colors";
+import React from "react";
+
+const ProductsGrid = ({ products, category }) => {
+  return (
+    <>
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: "center",
+          color: grey[700],
+          fontFamily: "monospace",
+          fontWeight: 500,
+          letterSpacing: 2,
+          mb: 4,
+        }}
+      >
+        {category}
+      </Typography>
+      <Grid container spacing={2} justifyContent={"center"}>
+        {products.map((product) => {
+          const { id, title, description, price, category, image, rating } =
+            product;
+          return (
+            <Grid item>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={image}
+                    alt={title}
+                  />
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h6"
+                      component="div"
+                      sx={{
+                        overflow: "hidden",
+                        height: 60,
+                        color: grey[900],
+                        mt: 1.5,
+                      }}
+                    >
+                      {title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{
+                        overflow: "hidden",
+                        height: 40,
+                        color: grey[600],
+                        mt: 1.5,
+                      }}
+                    >
+                      {description}
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      color="text.secondary"
+                      sx={{
+                        overflow: "hidden",
+                        height: 40,
+                        color: grey[600],
+                        mt: 1.5,
+                      }}
+                    >
+                      $ {price}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </>
+  );
+};
+
+export default ProductsGrid;
