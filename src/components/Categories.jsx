@@ -1,6 +1,5 @@
 import {
   List,
-  ListItemAvatar,
   ListItemText,
   Avatar,
   Button,

@@ -1,8 +1,10 @@
 import {
+  Box,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
+  Divider,
   Grid,
   Typography,
 } from "@mui/material";
@@ -20,17 +22,18 @@ const ProductsGrid = ({ products, category }) => {
           fontFamily: "monospace",
           fontWeight: 500,
           letterSpacing: 2,
-          mb: 4,
+          mb: 5,
         }}
       >
         {category}
       </Typography>
+      <Divider sx={{ mb: 3 }} />
       <Grid container spacing={2} justifyContent={"center"}>
         {products.map((product) => {
           const { id, title, description, price, category, image, rating } =
             product;
           return (
-            <Grid item>
+            <Grid key={id} item>
               <Card sx={{ maxWidth: 345 }}>
                 <CardActionArea>
                   <CardMedia

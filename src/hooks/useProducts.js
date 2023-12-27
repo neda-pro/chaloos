@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { request } from "../utils/axios-utils";
 
-const getAllCategoriesHelper = () => {
-  return request({ url: "/products/categories", method: "GET" });
+const getCategoriesHelper = () => {
+  return request({ url: "/products/categories" });
 };
+
 const getProductHelper = (id) => {
-  return request({ url: `/products/${id}`, method: "GET" });
+  return request({ url: `/products/${id}` });
 };
 
 const getProductsHelper = (query) => {
@@ -23,7 +24,7 @@ const getProductsHelper = (query) => {
 export const useCategories = () => {
   return useQuery({
     queryKey: ["categories"],
-    queryFn: getAllCategoriesHelper,
+    queryFn: () => getCategoriesHelper(),
     select: (data) => data.data,
   });
 };
