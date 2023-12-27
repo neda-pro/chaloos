@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
-const Categories = ({ listOfCategories }) => {
+const Categories = ({ listOfCategories, onClick }) => {
   return (
     <>
       <Typography
@@ -31,7 +31,7 @@ const Categories = ({ listOfCategories }) => {
           mt: 5,
         }}
       >
-        {listOfCategories.map((category) => {
+        {listOfCategories.map((category, index) => {
           const { id, img, category: itemCategory } = category;
           return (
             <ListItem
@@ -43,6 +43,7 @@ const Categories = ({ listOfCategories }) => {
               }}
             >
               <Button
+                onClick={() => onClick(index)}
                 sx={{
                   borderRadius: "50%",
                   padding: 0,

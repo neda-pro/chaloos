@@ -3,8 +3,10 @@ import Carousel from "../components/Carousel";
 import Categories from "../components/Categories";
 import ProductsGrid from "../components/ProductsGrid";
 import { useCategories, useProducts } from "../hooks/useProducts";
+import { useRef } from "react";
 
 const Home = () => {
+  const sectionRef = useRef([]);
   const {
     data: categoriesData,
     isError: categoriesIsError,
@@ -36,6 +38,12 @@ const Home = () => {
     return catArr;
   };
 
+  const scrollToSection = (index) => {
+    if (sectionRef.current[index]) {
+      sectionRef.current[index].scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <Container disableGutters={true} maxWidth={false}>
       {/* Carousel */}
@@ -55,12 +63,16 @@ const Home = () => {
           pt: 3,
         }}
       >
-        <Categories listOfCategories={createListOfCategories()} />
+        <Categories
+          onClick={scrollToSection}
+          listOfCategories={createListOfCategories()}
+        />
       </Paper>
       {/* products sections */}
-      {categoriesData.map((category) => {
+      {categoriesData.map((category, index) => {
         return (
           <Paper
+            ref={(el) => (sectionRef.current[index] = el)}
             key={category}
             elevation={0}
             sx={{
