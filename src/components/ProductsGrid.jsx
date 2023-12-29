@@ -11,7 +11,7 @@ import {
 import { grey } from "@mui/material/colors";
 import React from "react";
 
-const ProductsGrid = ({ products, category }) => {
+const ProductsGrid = ({ products, category, onProductClick }) => {
   return (
     <>
       <Typography
@@ -35,7 +35,7 @@ const ProductsGrid = ({ products, category }) => {
           return (
             <Grid key={id} item>
               <Card sx={{ maxWidth: 345 }}>
-                <CardActionArea>
+                <CardActionArea onClick={() => onProductClick(product)}>
                   <CardMedia
                     component="img"
                     height="140"

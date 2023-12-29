@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import countReducer from "./features/dummy/countSlice";
+import modalReducer from "./features/modal/modalSlice";
+import productsReducer from "./features/products/productsSlice";
 export const store = configureStore({
   reducer: {
-    testCount: countReducer,
+    modal: modalReducer,
+    products: productsReducer,
   },
 });

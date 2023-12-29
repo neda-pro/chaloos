@@ -1,11 +1,18 @@
-import { Container, Paper } from "@mui/material";
+import { Box, Container, Modal, Paper, Typography } from "@mui/material";
 import Carousel from "../components/Carousel";
 import Categories from "../components/Categories";
 import ProductsGrid from "../components/ProductsGrid";
 import { useCategories, useProducts } from "../hooks/useProducts";
 import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setClose, setOpen } from "../features/modal/modalSlice";
+import { setSelectedProduct } from "../features/products/productsSlice";
+import ProductModal from "../components/ProductModal";
 
 const Home = () => {
+  const { open } = useSelector((store) => store.modal);
+  const { selectedProduct } = useSelector((store) => store.products);
+  const dispatch = useDispatch();
   const sectionRef = useRef([]);
   const {
     data: categoriesData,
@@ -42,6 +49,11 @@ const Home = () => {
     if (sectionRef.current[index]) {
       sectionRef.current[index].scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const onProductClick = (product) => {
+    dispatch(setSelectedProduct(product));
+    dispatch(setOpen());
   };
 
   return (
@@ -81,6 +93,7 @@ const Home = () => {
             }}
           >
             <ProductsGrid
+              onProductClick={onProductClick}
               products={productsData.filter(
                 (data) => data.category === category
               )}
@@ -89,6 +102,11 @@ const Home = () => {
           </Paper>
         );
       })}
+      <ProductModal
+        open={open}
+        onClose={() => dispatch(setClose())}
+        product={selectedProduct}
+      />
     </Container>
   );
 };
