@@ -11,10 +11,18 @@ import {
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { grey } from "@mui/material/colors";
 import ItemCounter from "./ItemCounter";
+import { useDispatch } from "react-redux";
+import {
+  addItemToCart,
+  decreaseIteCount,
+  increaseIteCount,
+} from "../features/products/productsSlice";
+import { setClose } from "../features/modal/modalSlice";
 
 const ProductModal = ({ open, onClose, product }) => {
   if (!open) return null;
-  const { title, price, description, image, rating } = product;
+  const { title, price, description, image, rating, count } = product;
+  const dispatch = useDispatch();
   return (
     <Modal
       open={open}
@@ -77,7 +85,7 @@ const ProductModal = ({ open, onClose, product }) => {
               color={grey[900]}
               component="div"
             >
-              ${price}
+              ${(count * price).toFixed(2)}
             </Typography>
           </CardContent>
           <Box
@@ -87,10 +95,19 @@ const ProductModal = ({ open, onClose, product }) => {
               gap: 5,
             }}
           >
-            <ItemCounter />
+            <ItemCounter
+              count={count}
+              onDecrease={() => dispatch(decreaseIteCount())}
+              onIncrease={() => dispatch(increaseIteCount())}
+            />
             <Button
+              disabled={count === 0}
               variant="contained"
               startIcon={<ShoppingCartOutlinedIcon />}
+              onClick={() => {
+                dispatch(addItemToCart(product));
+                dispatch(setClose());
+              }}
             >
               Add to cart
             </Button>

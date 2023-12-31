@@ -11,12 +11,14 @@ import {
   Button,
   Tooltip,
   MenuItem,
+  Badge,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { grey } from "@mui/material/colors";
+import { useDispatch, useSelector } from "react-redux";
 
 const pages = ["Collection", "men", "women", "About", "Contact"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -39,6 +41,7 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const { totalItemsInCart } = useSelector((store) => store.products);
 
   return (
     <AppBar
@@ -150,7 +153,9 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Shopping cart">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <ShoppingCartOutlinedIcon />
+                <Badge badgeContent={totalItemsInCart} color="primary">
+                  <ShoppingCartOutlinedIcon />
+                </Badge>
               </IconButton>
             </Tooltip>
             <Tooltip title="Wish list">

@@ -3,7 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { grey } from "@mui/material/colors";
 
-const ItemCounter = () => {
+const ItemCounter = ({ count, onIncrease, onDecrease }) => {
   return (
     <Box
       sx={{
@@ -14,7 +14,7 @@ const ItemCounter = () => {
         borderRadius: 1,
       }}
     >
-      <IconButton aria-label="increase">
+      <IconButton aria-label="decrease" onClick={onDecrease}>
         <RemoveIcon sx={{ height: 26, width: 26 }} color="primary" />
       </IconButton>
       <Typography
@@ -23,9 +23,9 @@ const ItemCounter = () => {
         component="div"
         fontFamily={"monospace"}
       >
-        1
+        {count}
       </Typography>
-      <IconButton aria-label="decrease">
+      <IconButton aria-label="increase" onClick={onIncrease}>
         <AddIcon sx={{ height: 26, width: 26 }} color="primary" />
       </IconButton>
     </Box>
