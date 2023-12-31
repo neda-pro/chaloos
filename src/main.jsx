@@ -8,6 +8,8 @@ import Root from "./routes/root.jsx";
 import Cart from "./routes/cart.jsx";
 import ErrorPage from "./error-page.jsx";
 import Home from "./routes/home.jsx";
+import Favorites from "./routes/favorites.jsx";
+import Profile from "./routes/profile.jsx";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/favorites",
+        element: <Favorites />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

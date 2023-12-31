@@ -5,41 +5,21 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Menu,
   Container,
   Avatar,
   Button,
   Tooltip,
-  MenuItem,
   Badge,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { grey } from "@mui/material/colors";
 import { useSelector } from "react-redux";
-
-const pages = [];
+import { useNavigate } from "react-router-dom";
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  const navigate = useNavigate();
   const { totalItemsInCart } = useSelector((store) => store.products);
 
   return (
@@ -55,51 +35,57 @@ function ResponsiveAppBar() {
       }}
     >
       <Container maxWidth={false}>
-        <Toolbar disableGutters sx={{ color: grey[900] }}>
-          <FlutterDashIcon sx={{ display: "flex", mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+        <Toolbar
+          disableGutters
+          sx={{
+            color: grey[900],
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box
             sx={{
-              mr: 2,
               display: "flex",
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              alignItems: "center",
             }}
           >
-            CHALOOS
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: "flex" }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ color: grey[600], display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            <FlutterDashIcon sx={{ mr: 1 }} />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              sx={{
+                mr: 2,
+                display: "flex",
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              CHALOOS
+            </Typography>
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+
+          <Box>
             <Tooltip title="Shopping cart">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={() => navigate("/cart")} sx={{ p: 0 }}>
                 <Badge badgeContent={totalItemsInCart} color="primary">
                   <ShoppingCartOutlinedIcon />
                 </Badge>
               </IconButton>
             </Tooltip>
             <Tooltip title="Wish list">
-              <IconButton onClick={handleOpenUserMenu} sx={{ ml: 2, mr: 2 }}>
+              <IconButton
+                onClick={() => navigate("/favorites")}
+                sx={{ ml: 2, mr: 2 }}
+              >
                 <FavoriteIcon />
               </IconButton>
             </Tooltip>
             <Tooltip title="User profile">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={() => navigate("/profile")} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
