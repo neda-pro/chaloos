@@ -1,8 +1,14 @@
 import { Box, IconButton, Typography } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import ItemCounter from "./ItemCounter";
 
-const ProductItem = ({ item, onRemove, onIncrease, onDecrease }) => {
+const ProductItem = ({
+  item,
+  onRemove,
+  onIncrease,
+  onDecrease,
+  hideCounter,
+  icon,
+}) => {
   const { count, image, price, title } = item;
   return (
     <Box
@@ -17,7 +23,7 @@ const ProductItem = ({ item, onRemove, onIncrease, onDecrease }) => {
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
         <IconButton aria-label="delete" onClick={onRemove}>
-          <DeleteIcon sx={{ color: "tomato" }} />
+          {icon}
         </IconButton>
         <img src={image} height={80} />
         <Box>
@@ -25,12 +31,14 @@ const ProductItem = ({ item, onRemove, onIncrease, onDecrease }) => {
           <Typography variant="h6">${(count * price).toFixed(2)}</Typography>
         </Box>
       </Box>
-      <ItemCounter
-        sx={{ height: 35 }}
-        count={count}
-        onIncrease={onIncrease}
-        onDecrease={onDecrease}
-      />
+      {!hideCounter && (
+        <ItemCounter
+          sx={{ height: 35 }}
+          count={count}
+          onIncrease={onIncrease}
+          onDecrease={onDecrease}
+        />
+      )}
     </Box>
   );
 };

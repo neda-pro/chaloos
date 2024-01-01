@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductItem from "../components/productItem";
 import { Button, Container } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 import {
   decreaseCartItemCount,
   increaseCartItemCount,
@@ -25,6 +27,7 @@ const Cart = () => {
             onRemove={() => dispatch(removeItemFromCart(item.id))}
             onIncrease={() => dispatch(increaseCartItemCount(item.id))}
             onDecrease={() => dispatch(decreaseCartItemCount(item.id))}
+            icon={<DeleteIcon sx={{ color: "tomato" }} />}
           />
         );
       })}

@@ -105,13 +105,17 @@ const Home = () => {
           </Paper>
         );
       })}
-      <ProductModal
-        open={open}
-        onClose={() => dispatch(setClose())}
-        product={selectedProduct}
-        favoriteClick={() => dispatch(toggleItemFavorites(selectedProduct.id))}
-        favorite={favorites[selectedProduct.id]}
-      />
+      {selectedProduct && (
+        <ProductModal
+          open={open}
+          onClose={() => dispatch(setClose())}
+          product={selectedProduct}
+          favoriteClick={() =>
+            dispatch(toggleItemFavorites(selectedProduct.id))
+          }
+          favorite={favorites[selectedProduct.id]}
+        />
+      )}
     </Container>
   );
 };

@@ -10,6 +10,7 @@ import {
   Button,
   Tooltip,
   Badge,
+  Link,
 } from "@mui/material";
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -43,10 +44,14 @@ function ResponsiveAppBar() {
             justifyContent: "space-between",
           }}
         >
-          <Box
+          <Link
+            component="button"
+            onClick={() => navigate("/home")}
             sx={{
               display: "flex",
               alignItems: "center",
+              color: grey[900],
+              textDecoration: "none",
             }}
           >
             <FlutterDashIcon sx={{ mr: 1 }} />
@@ -66,7 +71,7 @@ function ResponsiveAppBar() {
             >
               CHALOOS
             </Typography>
-          </Box>
+          </Link>
 
           <Box>
             <Tooltip title="Shopping cart">
