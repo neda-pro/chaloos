@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductItem from "../components/productItem";
-import { Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import {
   decreaseCartItemCount,
   increaseCartItemCount,
@@ -8,8 +8,11 @@ import {
 } from "../features/products/productsSlice";
 
 const Cart = () => {
-  const { cart } = useSelector((store) => store.products);
+  const { cart, totalItemsInCart } = useSelector((store) => store.products);
   const dispatch = useDispatch();
+  const calcTotalPrice = () => {
+    return cart.reduce((acc, curr) => acc + curr.count * curr.price, 0);
+  };
 
   console.log(cart);
   return (
@@ -25,6 +28,9 @@ const Cart = () => {
           />
         );
       })}
+      <Button variant="outlined" disabled={totalItemsInCart === 0}>
+        Pay (${calcTotalPrice()}) and Buy
+      </Button>
     </Container>
   );
 };

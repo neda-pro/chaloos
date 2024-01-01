@@ -22,7 +22,7 @@ const ProductItem = ({ item, onRemove, onIncrease, onDecrease }) => {
         <img src={image} height={80} />
         <Box>
           <Typography variant="body2">{title}</Typography>
-          <Typography variant="h6">${price}</Typography>
+          <Typography variant="h6">${(count * price).toFixed(2)}</Typography>
         </Box>
       </Box>
       <ItemCounter

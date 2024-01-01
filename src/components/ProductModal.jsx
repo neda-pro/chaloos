@@ -97,8 +97,8 @@ const ProductModal = ({ open, onClose, product }) => {
           >
             <ItemCounter
               count={count}
-              onDecrease={() => dispatch(decreaseIteCount())}
               onIncrease={() => dispatch(increaseIteCount())}
+              onDecrease={() => dispatch(decreaseIteCount())}
             />
             <Button
               disabled={count === 0}
