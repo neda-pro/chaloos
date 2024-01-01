@@ -81,7 +81,7 @@ function ResponsiveAppBar() {
                 onClick={() => navigate("/favorites")}
                 sx={{ ml: 2, mr: 2 }}
               >
-                <FavoriteIcon />
+                <FavoriteIcon sx={{ color: "tomato" }} />
               </IconButton>
             </Tooltip>
             <Tooltip title="User profile">

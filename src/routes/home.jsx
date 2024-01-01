@@ -6,12 +6,15 @@ import { useCategories, useProducts } from "../hooks/useProducts";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setClose, setOpen } from "../features/modal/modalSlice";
-import { setSelectedProduct } from "../features/products/productsSlice";
+import {
+  setSelectedProduct,
+  toggleItemFavorites,
+} from "../features/products/productsSlice";
 import ProductModal from "../components/ProductModal";
 
 const Home = () => {
   const { open } = useSelector((store) => store.modal);
-  const { selectedProduct } = useSelector((store) => store.products);
+  const { selectedProduct, favorites } = useSelector((store) => store.products);
   const dispatch = useDispatch();
   const sectionRef = useRef([]);
   const {
@@ -106,6 +109,8 @@ const Home = () => {
         open={open}
         onClose={() => dispatch(setClose())}
         product={selectedProduct}
+        favoriteClick={() => dispatch(toggleItemFavorites(selectedProduct.id))}
+        favorite={favorites[selectedProduct.id]}
       />
     </Container>
   );

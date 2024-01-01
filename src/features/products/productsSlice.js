@@ -4,6 +4,7 @@ const initialState = {
   selectedProduct: null,
   cart: [],
   totalItemsInCart: 0,
+  favorites: {},
 };
 
 const productsSlice = createSlice({
@@ -52,6 +53,10 @@ const productsSlice = createSlice({
         state.cart = state.cart.filter((i) => i.id !== id);
       }
     },
+    toggleItemFavorites: (state, { payload: id }) => {
+      if (!state.favorites[id]) state.favorites[id] = true;
+      else state.favorites[id] = !state.favorites[id];
+    },
   },
 });
 
@@ -64,4 +69,5 @@ export const {
   removeItemFromCart,
   increaseCartItemCount,
   decreaseCartItemCount,
+  toggleItemFavorites,
 } = productsSlice.actions;

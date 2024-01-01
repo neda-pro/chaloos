@@ -4,8 +4,10 @@ import {
   Card,
   CardContent,
   CardMedia,
+  IconButton,
   Modal,
   Rating,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -18,8 +20,9 @@ import {
   increaseIteCount,
 } from "../features/products/productsSlice";
 import { setClose } from "../features/modal/modalSlice";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
-const ProductModal = ({ open, onClose, product }) => {
+const ProductModal = ({ open, onClose, product, favoriteClick, favorite }) => {
   if (!open) return null;
   const { title, price, description, image, rating, count } = product;
   const dispatch = useDispatch();
@@ -61,16 +64,31 @@ const ProductModal = ({ open, onClose, product }) => {
               flex: "1 0 auto",
             }}
           >
-            <Box>
-              <Typography component="legend" color="primary">
-                Voted by {rating.count} people
-              </Typography>
-              <Rating
-                name="read-only"
-                value={rating.rate}
-                precision={0.1}
-                readOnly
-              />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Box>
+                <Typography component="legend" color="primary">
+                  Voted by {rating.count} people
+                </Typography>
+                <Rating
+                  name="read-only"
+                  value={rating.rate}
+                  precision={0.1}
+                  readOnly
+                />
+              </Box>
+              <Tooltip title="Add to wish list">
+                <IconButton onClick={favoriteClick} sx={{ ml: 2, mr: 2 }}>
+                  <FavoriteIcon
+                    sx={{ color: favorite ? "tomato" : grey[400] }}
+                  />
+                </IconButton>
+              </Tooltip>
             </Box>
             <Typography variant="h5" color={grey[900]} component="div">
               {title}
