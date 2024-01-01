@@ -3,7 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { grey } from "@mui/material/colors";
 
-const ItemCounter = ({ count, onIncrease, onDecrease }) => {
+const ItemCounter = ({ count, onIncrease, onDecrease, sx }) => {
   return (
     <Box
       sx={{
@@ -12,6 +12,7 @@ const ItemCounter = ({ count, onIncrease, onDecrease }) => {
         gap: 1,
         bgcolor: grey[100],
         borderRadius: 1,
+        ...sx,
       }}
     >
       <IconButton aria-label="decrease" onClick={onDecrease}>

@@ -34,6 +34,24 @@ const productsSlice = createSlice({
         state.totalItemsInCart += product.count;
       }
     },
+    removeItemFromCart: (state, { payload: id }) => {
+      const item = state.cart.find((i) => i.id === id);
+      state.totalItemsInCart -= item.count;
+      state.cart = state.cart.filter((item) => item.id !== id);
+    },
+    increaseCartItemCount: (state, { payload: id }) => {
+      const item = state.cart.find((i) => i.id === id);
+      item.count++;
+      state.totalItemsInCart++;
+    },
+    decreaseCartItemCount: (state, { payload: id }) => {
+      const item = state.cart.find((i) => i.id === id);
+      item.count--;
+      state.totalItemsInCart--;
+      if (item.count === 0) {
+        state.cart = state.cart.filter((i) => i.id !== id);
+      }
+    },
   },
 });
 
@@ -43,4 +61,7 @@ export const {
   increaseIteCount,
   decreaseIteCount,
   addItemToCart,
+  removeItemFromCart,
+  increaseCartItemCount,
+  decreaseCartItemCount,
 } = productsSlice.actions;
