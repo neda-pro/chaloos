@@ -28,7 +28,12 @@ const ProductsGrid = ({ products, category, onProductClick }) => {
         {category}
       </Typography>
       <Divider sx={{ mb: 3 }} />
-      <Grid container spacing={2} justifyContent={"center"}>
+      <Grid
+        container
+        spacing={2}
+        justifyContent={"center"}
+        sx={{ maxWidth: { xs: "unset", md: 1500 }, mr: "auto", ml: "auto" }}
+      >
         {products.map((product) => {
           const { id, title, description, price, category, image, rating } =
             product;

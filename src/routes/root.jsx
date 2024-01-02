@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import AppHeader from "../components/AppHeader";
-import AppFooter from "../components/AppFooter";
 import { Box } from "@mui/material";
 
 const Root = () => {
@@ -8,7 +7,6 @@ const Root = () => {
     <Box sx={{ padding: "0 5rem" }}>
       <AppHeader />
       <Outlet />
-      {/* <AppFooter /> */}
     </Box>
   );
 };
