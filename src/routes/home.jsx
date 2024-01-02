@@ -1,4 +1,4 @@
-import { Box, Container, Modal, Paper, Typography } from "@mui/material";
+import { Container, Paper } from "@mui/material";
 import Carousel from "../components/Carousel";
 import Categories from "../components/Categories";
 import ProductsGrid from "../components/ProductsGrid";
@@ -68,7 +68,7 @@ const Home = () => {
           borderRadius: 0,
         }}
       >
-        <Carousel />
+        <Carousel slides={createListOfCategories()} />
       </Paper>
       {/* categories section */}
       <Paper

@@ -16,7 +16,6 @@ const Cart = () => {
     return cart.reduce((acc, curr) => acc + curr.count * curr.price, 0);
   };
 
-  console.log(cart);
   return (
     <Container sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
       {cart.map((item) => {

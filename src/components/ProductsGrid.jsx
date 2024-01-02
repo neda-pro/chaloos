@@ -1,5 +1,4 @@
 import {
-  Box,
   Card,
   CardActionArea,
   CardContent,
@@ -9,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import React from "react";
 
 const ProductsGrid = ({ products, category, onProductClick }) => {
   return (
