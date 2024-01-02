@@ -18,11 +18,21 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { grey } from "@mui/material/colors";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useUsers } from "../hooks/useUsers";
 
 function ResponsiveAppBar() {
   const navigate = useNavigate();
   const { totalItemsInCart } = useSelector((store) => store.products);
 
+  const {
+    data: userData,
+    isError: userIsError,
+    isLoading: userIsLoading,
+  } = useUsers();
+  if (userIsLoading) {
+    return null;
+  }
+  const { username } = userData;
   return (
     <AppBar
       position="static"
@@ -91,7 +101,7 @@ function ResponsiveAppBar() {
             </Tooltip>
             <Tooltip title="User profile">
               <IconButton onClick={() => navigate("/profile")} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={username} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
           </Box>
