@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import ProductItem from "../components/productItem";
+import ProductItem from "../components/ProductItem";
 import { Container } from "@mui/material";
 import { toggleItemFavorites } from "../features/products/productsSlice";
 import { useProducts } from "../hooks/useProducts";

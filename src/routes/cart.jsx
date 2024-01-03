@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import ProductItem from "../components/productItem";
+import ProductItem from "../components/ProductItem";
 import { Button, Container } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
