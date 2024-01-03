@@ -7,7 +7,6 @@ import {
   Typography,
   Container,
   Avatar,
-  Button,
   Tooltip,
   Badge,
   Link,
@@ -16,12 +15,14 @@ import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { grey } from "@mui/material/colors";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useUsers } from "../hooks/useUsers";
+import { setIsHome } from "../features/navigation/navigationSlice";
 
 function ResponsiveAppBar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { totalItemsInCart } = useSelector((store) => store.products);
 
   const {
@@ -56,7 +57,10 @@ function ResponsiveAppBar() {
         >
           <Link
             component="button"
-            onClick={() => navigate("/home")}
+            onClick={() => {
+              navigate("/");
+              dispatch(setIsHome(true));
+            }}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -85,7 +89,13 @@ function ResponsiveAppBar() {
 
           <Box>
             <Tooltip title="Shopping cart">
-              <IconButton onClick={() => navigate("/cart")} sx={{ p: 0 }}>
+              <IconButton
+                onClick={() => {
+                  navigate("/cart");
+                  dispatch(setIsHome(false));
+                }}
+                sx={{ p: 0 }}
+              >
                 <Badge badgeContent={totalItemsInCart} color="primary">
                   <ShoppingCartOutlinedIcon />
                 </Badge>
@@ -93,7 +103,10 @@ function ResponsiveAppBar() {
             </Tooltip>
             <Tooltip title="Wish list">
               <IconButton
-                onClick={() => navigate("/favorites")}
+                onClick={() => {
+                  navigate("/favorites");
+                  dispatch(setIsHome(false));
+                }}
                 sx={{ ml: 2, mr: 2 }}
               >
                 <FavoriteIcon sx={{ color: "tomato" }} />

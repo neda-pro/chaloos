@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Root from "./routes/root.jsx";
 import Cart from "./routes/cart.jsx";
 import ErrorPage from "./error-page.jsx";
-import Home from "./routes/home.jsx";
 import Favorites from "./routes/favorites.jsx";
 import Profile from "./routes/profile.jsx";
 
@@ -19,10 +18,10 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "/home",
-        element: <Home />,
-      },
+      // {
+      //   path: "/home",
+      //   element: <Home />,
+      // },
       {
         path: "/cart",
         element: <Cart />,
