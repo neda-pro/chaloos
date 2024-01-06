@@ -1,7 +1,7 @@
 _Note: This is a demo project!_
 
 # Chaloos
-An online shopping app including wishlist management
+An online shopping app including shopping cart and wishlist management
 
 # technology set
 - [React](https://react.dev/)
