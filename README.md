@@ -1,8 +1,5 @@
 _Note: This is a demo project!_
 
-
-
-Axios
 # Chaloos
 An online shopping app including wishlist management
 
